@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { initFlowbite } from 'flowbite';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -11,4 +12,9 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'AFTAS';
+
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }
+

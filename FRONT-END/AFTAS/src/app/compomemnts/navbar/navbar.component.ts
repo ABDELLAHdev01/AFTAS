@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +9,9 @@ import { Component, NgModule } from '@angular/core';
 })
 
 
-export class NavbarComponent {
 
+export class NavbarComponent implements OnInit {
+
+  ngOnInit(): void {
+  }
 }
