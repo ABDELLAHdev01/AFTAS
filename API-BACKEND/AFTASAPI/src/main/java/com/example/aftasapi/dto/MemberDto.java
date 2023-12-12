@@ -55,6 +55,8 @@ public class MemberDto {
                 .nationality(nationality)
                 .identityDocumentType(IdentityDocumentType.valueOf(identityDocumentType.name()))
                 .identityNumber(identityNumber)
+                .rankings(rankings)
+                .huntings(huntings)
                 .build();
     }
 }
