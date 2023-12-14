@@ -1,6 +1,5 @@
 package com.example.aftasapi.controllers;
 
-import com.example.aftasapi.dto.MemberDto;
 import com.example.aftasapi.entities.Member;
 import com.example.aftasapi.services.MemberService;
 import org.apache.coyote.Response;
@@ -15,21 +14,21 @@ import java.util.Map;
 @RequestMapping("/member")
 public class MemberController {
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
 
     @PostMapping("/addmember")
-    public ResponseEntity<Map<String, Object>>addMember(@RequestBody MemberDto member) {
+    public ResponseEntity<Map<String, Object>>addMember(@RequestBody Member member) {
         Map<String, Object> response = new HashMap<>();
 
         try {
 
 
             response.put("message", "User created successfully");
-            response.put("member",memberService.addMember(member.mapToEntity()));
+            response.put("member",memberService.addMember(member));
             return ResponseEntity.ok(response);
 
         }catch (Exception e) {

@@ -1,38 +1,36 @@
 package com.example.aftasapi.entities;
 
+
 import com.example.aftasapi.entities.enums.IdentityDocumentType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
-@ToString
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@EntityListeners({AuditingEntityListener.class})
+@Entity
 public class Member {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-    private String familyName;
-    private Date accessionDate;
+    private Long number;
+    private String firstName;
+    private String lastName;
+    private LocalDate accessionDate;
     private String nationality;
     @Enumerated(EnumType.STRING)
-    private IdentityDocumentType identityDocumentType;
+    private IdentityDocumentType identityDocument;
     private String identityNumber;
 
-    @OneToMany(mappedBy = "member")
-    @ToString.Exclude
-    private List<Ranking> rankings;
-
-    @OneToMany(mappedBy = "member")
-    @ToString.Exclude
-    private List<Hunting> huntings;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    @JsonManagedReference
+    private List<Hunting> huntingList;
+;
 }

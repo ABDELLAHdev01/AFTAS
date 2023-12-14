@@ -1,31 +1,28 @@
 package com.example.aftasapi.entities;
 
-import com.example.aftasapi.entities.embadded.MemberCompetition;
+import com.example.aftasapi.entities.embadded.RankId;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
+import java.lang.reflect.Member;
 
 @Entity
 @Getter
 @Setter
-@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Ranking {
+public class Ranking implements Serializable {
 
     @EmbeddedId
-    private MemberCompetition id;
-
+    private RankId id;
     private Integer rank;
     private Integer score;
-
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    @MapsId("memberId")
+    @MapsId("memberNumber")
     private Member member;
-
     @ManyToOne
-    @JoinColumn(name = "competition_id")
-    @MapsId("competitionId")
+    @MapsId("competitionCode")
     private Competition competition;
 }
