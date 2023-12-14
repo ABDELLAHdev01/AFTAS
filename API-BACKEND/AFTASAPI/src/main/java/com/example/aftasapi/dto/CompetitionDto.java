@@ -22,9 +22,8 @@ public class CompetitionDto {
     private LocalTime endTime;
     private Integer numberOfParticipants;
     private String location;
-    private Double amount;
+        private Double amount;
 
-    private List<Hunting> huntingList;
 
     public Competition mapToEntity(){
         return Competition.builder()
@@ -35,7 +34,18 @@ public class CompetitionDto {
                 .numberOfParticipants(numberOfParticipants)
                 .location(location)
                 .amount(amount)
-                .huntingList(huntingList)
+                .build();
+    }
+
+    public CompetitionDto EntityToMap(Competition competition){
+        return CompetitionDto.builder()
+                .code(competition.getCode())
+                .date(competition.getDate())
+                .startTime(competition.getStartTime())
+                .endTime(competition.getEndTime())
+                .numberOfParticipants(competition.getNumberOfParticipants())
+                .amount(competition.getAmount())
+                .location(competition.getLocation())
                 .build();
     }
 }

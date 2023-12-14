@@ -10,7 +10,7 @@ import {
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddModalComponent } from '../add-modal/add-modal.component';
 import { TableComponent } from '../table/table.component';
-import { CompetitionService } from '../../../services/CompetitionService';
+import { CompetitonService } from '../../services/competiton.service';
 
 
 @Component({
@@ -23,12 +23,21 @@ import { CompetitionService } from '../../../services/CompetitionService';
 export class CompetitionsComponent implements OnInit {
   comps:any[]= [];
 
+  constructor(private competitionService: CompetitonService){
+  }
 
-
-  ngOnInit(): void {
+  ngOnInit()  {
+    console.log("frf");
     
   }
 
+  // getAllCompetitions(){
+   
+  //   this.competitionService.getAllCompetitions().subscribe(compet =>{
+  //    this.comps = compet;
+  //   })
+
+//  }
  
   
 }

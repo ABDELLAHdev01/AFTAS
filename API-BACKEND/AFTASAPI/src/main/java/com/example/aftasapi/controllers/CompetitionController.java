@@ -3,7 +3,6 @@ package com.example.aftasapi.controllers;
 import com.example.aftasapi.dto.CompetitionDto;
 import com.example.aftasapi.entities.Competition;
 import com.example.aftasapi.services.CompetitionService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,19 +21,34 @@ public class CompetitionController {
     }
 
     @PostMapping
-    public Competition createCompetition(@RequestBody CompetitionDto competition) throws NoSuchFieldException {
-        return competitionService.CreateCompetition(competition.mapToEntity());
+    public ResponseEntity<Map<String, Object>> createCompetition(@RequestBody CompetitionDto competition) {
+        Map<String, Object> response = new HashMap<>();
+        try {
 
+
+            Competition comp = competitionService.CreateCompetition(competition.mapToEntity());
+            response.put("success", competition.EntityToMap(comp));
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
     }
+
     @GetMapping("/all")
-    public ResponseEntity<Map<String,List<Competition>>> getAllComp(){
-        Map<String, List<Competition>> response = new HashMap<>();
+    public ResponseEntity<Map<String, Object>> getAllComp() {
+        Map<String, Object> response = new HashMap<>();
+        try {
 
-        List<Competition> allcomp = competitionService.getCompetitionList();
-        response.put("allcomp", allcomp);
 
-        return ResponseEntity.ok(response);
+            List<Competition> allcomp = competitionService.getCompetitionList();
+            response.put("AllCompetitions", allcomp);
 
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("err", e);
+            return ResponseEntity.badRequest().body(response);
+        }
     }
 
 }
