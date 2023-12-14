@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="4207756620671332621" datatype="html">
+        <source>Aftas Club in Mirleft, Tiznit, is your gateway to thrilling sports experiences. From surfing to paragliding, we redefine adventure. Join us for unforgettable moments of excitement and excellence</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/herosection/herosection.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,127 @@
+#
+# Your Crowdin credentials
+#
+"project_id": "hgrg"
+"api_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3UUVxdmhVM3ZMT2EyWGljbVV5VCIsImp0aSI6IjljNjY1NGRiZWJmMjRmN2JlOGIzODBhNzRiMmFjZjg5MzE3ZjYxY2VjYTAyMGM4NmNjOTIxMDBkM2Y0MzMxN2NjY2RjNzRjOTE0ZWZkZmM4IiwiaWF0IjoxNzAyNTgxMTM0LjE4MjI4OSwibmJmIjoxNzAyNTgxMTM0LjE4MjI5MSwiZXhwIjoxNzM0MTE3MTM0LjA4NTYwOCwic3ViIjoiMiIsInNjb3BlcyI6WyJwcm9qZWN0Il0sImRvbWFpbiI6ImhncmciLCJhc3NvY2lhdGlvbnMiOlsiKiJdLCJzZXNzaW9uIjowfQ.PXzJ-giaZAGQ7ApX5gflKq0dsh4X3QF0CH1HJ4z1JA1DPeV7VK1mU2HziugEfg4WDGYr5pdWAUihDtbMqYFYDIMQeMBkh_XhNxGyWiBgjty-SPZVTwztgeRiXzzmeP-O4K0XdKeKud8uTtGSt2MGl_HDz-t_MyMQ4s_nZLEfAWlpXvFrEsZdol7Ao0u6fOGKbnJ_dJzdMn_o4j3b22fULZfy9BZU9pV_LqA0dSul2-obQuxAb8mR4nE4m89mhrzYk7o0WZpgKNFriuWd4raFho1rfABzoCqYyfVJMyCsooX90CQ4pdqQMZR3dt5OWuvzjC1VCeF8pzQ7R8Kd-uJFPBc27Uq8d2QxreX2Uh_h9eHbQnN10fst6ckhRWDvvvckb4wOzsxCDfT9jXUcUfrkTAZbTbnWx3vSUCjJ-CiBrlgcYxiG-uVe1FIk7tqtpYoifD91xYF7iJ-9hZM8ABWZNk108-9xl0XXnZ2-a8rqi0aRAGdVk_Q5X6rrjOG86YiIDcPspPAxZunzElC66qkFqYo7Re0zjNRwaNt_oiEC97iPi_1wjhOL_lQCJ-JdLCL8jqiCWULB6w6Iks2Tu7d_U5sdChth611_f0xQb2cbRHF9uLGOQ4YfTz2vrgeWT1vs2vziXDgerCbmYomqE5Wob7csEi9V8kQ4OYKV7i8wbK0"
+"base_path": "."
+"base_url": "https://hgrg.api.crowdin.com"
+
+#
+# Choose file structure in Crowdin
+# e.g. true or false
+#
+"preserve_hierarchy": true
+
+#
+# Files configuration
+#
+files: [
+  {
+    #
+    # Source files filter
+    # e.g. "/resources/en/*.json"
+    #
+    "source": "",
+
+    #
+    # Where translations will be placed
+    # e.g. "/resources/%two_letters_code%/%original_file_name%"
+    #
+    "translation": "",
+
+    #
+    # Files or directories for ignore
+    # e.g. ["/**/?.txt", "/**/[0-9].txt", "/**/*\?*.txt"]
+    #
+    # "ignore": [],
+
+    #
+    # The dest allows you to specify a file name in Crowdin
+    # e.g. "/messages.json"
+    #
+    # "dest": "",
+
+    #
+    # File type
+    # e.g. "json"
+    #
+    # "type": "",
+
+    #
+    # The parameter "update_option" is optional. If it is not set, after the files update the translations for changed strings will be removed. Use to fix typos and for minor changes in the source strings
+    # e.g. "update_as_unapproved" or "update_without_changes"
+    #
+    # "update_option": "",
+
+    #
+    # Start block (for XML only)
+    #
+
+    #
+    # Defines whether to translate tags attributes.
+    # e.g. 0 or 1  (Default is 1)
+    #
+    # "translate_attributes": 1,
+
+    #
+    # Defines whether to translate texts placed inside the tags.
+    # e.g. 0 or 1 (Default is 1)
+    #
+    # "translate_content": 1,
+
+    #
+    # This is an array of strings, where each item is the XPaths to DOM element that should be imported
+    # e.g. ["/content/text", "/content/text[@value]"]
+    #
+    # "translatable_elements": [],
+
+    #
+    # Defines whether to split long texts into smaller text segments
+    # e.g. 0 or 1 (Default is 1)
+    #
+    # "content_segmentation": 1,
+
+    #
+    # End block (for XML only)
+    #
+
+    #
+    # Start .properties block
+    #
+
+    #
+    # Defines whether single quote should be escaped by another single quote or backslash in exported translations
+    # e.g. 0 or 1 or 2 or 3 (Default is 3)
+    # 0 - do not escape single quote;
+    # 1 - escape single quote by another single quote;
+    # 2 - escape single quote by backslash;
+    # 3 - escape single quote by another single quote only in strings containing variables ( {0} ).
+    #
+    # "escape_quotes": 3,
+
+    #
+    # Defines whether any special characters (=, :, ! and #) should be escaped by backslash in exported translations.
+    # e.g. 0 or 1 (Default is 0)
+    # 0 - do not escape special characters
+    # 1 - escape special characters by a backslash
+    #
+    # "escape_special_characters": 0
+    #
+
+    #
+    # End .properties block
+    #
+
+    #
+    # Does the first line contain header?
+    # e.g. true or false
+    #
+    # "first_line_contains_header": true,
+
+    #
+    # for spreadsheets
+    # e.g. "identifier,source_phrase,context,uk,ru,fr"
+    #
+    # "scheme": "",
+  }
+]

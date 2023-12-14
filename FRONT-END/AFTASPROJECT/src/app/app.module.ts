@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterOutlet } from '@angular/router';
@@ -13,6 +12,14 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { CompetitionsComponent } from './components/competitions/competitions.component';
 import { MembersComponent } from './components/members/members.component';
 import { FishesComponent } from './components/fishes/fishes.component';
+import { CompetitionService } from './services/competition.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { TranslateLoader, TranslateModule } from  '@ngx-translate/core';
+import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +37,11 @@ import { FishesComponent } from './components/fishes/fishes.component';
     AppRoutingModule,
     RouterOutlet,
     RouterLink,
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    ReactiveFormsModule
+    
    
   ],
   providers: [],
