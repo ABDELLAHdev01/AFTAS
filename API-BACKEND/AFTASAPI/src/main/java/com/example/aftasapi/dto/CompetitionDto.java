@@ -22,7 +22,7 @@ public class CompetitionDto {
     private LocalTime endTime;
     private Integer numberOfParticipants;
     private String location;
-        private Double amount;
+    private Double amount;
 
 
     public Competition mapToEntity(){
