@@ -1,5 +1,6 @@
 package com.example.aftasapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,6 +19,7 @@ public class Level {
     private Integer points;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "level")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonManagedReference
     private List<Fish> fishList;
 }
 

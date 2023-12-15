@@ -1,6 +1,7 @@
 package com.example.aftasapi.controllers;
 
 import com.example.aftasapi.dto.CompetitionDto;
+import com.example.aftasapi.dto.RankingDto;
 import com.example.aftasapi.entities.Competition;
 import com.example.aftasapi.services.CompetitionService;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +50,18 @@ public class CompetitionController {
             response.put("err", e);
             return ResponseEntity.badRequest().body(response);
         }
+    }
+
+    @PostMapping("/assing")
+    public ResponseEntity<Map<String,Object>> AddRanking(@RequestBody RankingDto newRanking){
+        Map<String, Object> response = new HashMap<>();
+
+
+    competitionService.AssingMemberToCompetition( newRanking.getMemberId() , newRanking.getCodeCompetition());
+
+            response.put("success", newRanking);
+    return ResponseEntity.ok().body(response);
+
     }
 
 }

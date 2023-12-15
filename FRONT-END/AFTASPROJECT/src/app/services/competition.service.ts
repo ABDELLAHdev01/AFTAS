@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import {HttpClient} from "@angular/common/http";
-import { competitions } from '../models/competition';
 import { Observable } from 'rxjs';
 
 
@@ -9,19 +8,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CompetitionService {
+  private readonly BASE_URL = environment.base_url;
 
   constructor(private http: HttpClient){
     
   }
 
   GetAllCompetitions (){
-    return this.http.get('http://localhost:8989/competition/all');
+    return this.http.get(this.BASE_URL+'/competition/all');
     
   }
 
 
   AddCompetition(data: any): Observable<any>{
-    return this.http.post('http://localhost:8989/competition',data); 
+    return this.http.post(this.BASE_URL+'/competition',data); 
   }
   
   

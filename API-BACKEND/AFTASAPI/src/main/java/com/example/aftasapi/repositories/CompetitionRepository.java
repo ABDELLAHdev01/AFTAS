@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Date;
 import java.util.List;
 
-public interface CompetitionRepository extends JpaRepository<Competition,Long> {
+public interface CompetitionRepository extends JpaRepository<Competition,String> {
+
 
 
 

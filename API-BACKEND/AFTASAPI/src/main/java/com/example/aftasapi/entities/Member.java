@@ -2,6 +2,8 @@ package com.example.aftasapi.entities;
 
 
 import com.example.aftasapi.entities.enums.IdentityDocumentType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,7 +31,6 @@ public class Member {
     private String identityNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
-    @JsonManagedReference
+    @JsonIgnore
     private List<Hunting> huntingList;
-;
 }

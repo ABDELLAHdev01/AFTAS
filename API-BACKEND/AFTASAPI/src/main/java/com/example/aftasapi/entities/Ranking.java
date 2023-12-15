@@ -1,6 +1,8 @@
 package com.example.aftasapi.entities;
 
 import com.example.aftasapi.entities.embadded.RankId;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,8 +22,10 @@ public class Ranking implements Serializable {
     private Integer score;
     @ManyToOne
     @MapsId("memberNumber")
+    @JsonBackReference
     private Member member;
     @ManyToOne
     @MapsId("competitionCode")
+    @JsonBackReference
     private Competition competition;
 }

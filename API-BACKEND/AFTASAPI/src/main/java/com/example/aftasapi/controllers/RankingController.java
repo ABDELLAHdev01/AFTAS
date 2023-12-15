@@ -3,6 +3,7 @@ package com.example.aftasapi.controllers;
 import com.example.aftasapi.dto.RankingDto;
 import com.example.aftasapi.entities.Ranking;
 import com.example.aftasapi.services.RankingService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,15 +23,5 @@ public class RankingController {
         this.rankingService = rankingService;
     }
 
-    @PostMapping
-    public ResponseEntity<Map<String,Object>> AddRanking(@RequestBody RankingDto newRanking){
-        Map<String, Object> response = new HashMap<>();
-           Ranking newRank =  rankingService.AddMemberToRanking(newRanking.MapToEntity());
-           newRanking.EntityToDto(newRank);
-           response.put("success",newRanking);
 
-           return ResponseEntity.ok(response);
-
-
-    }
 }

@@ -52,11 +52,15 @@ export class CompetitionsComponent {
           });
           this.closeModal();
           this.AddForm.reset();
+        
 
         },
         error: (err: any) => {
           console.log(err);
-          
+            this.toastr.error(err.error.error,"error",{
+              closeButton: true,
+              timeOut: 3000,
+            });
         }
       })
     }

@@ -1,13 +1,14 @@
 package com.example.aftasapi.controllers;
 
+import com.example.aftasapi.dto.MemberDto;
 import com.example.aftasapi.entities.Member;
 import com.example.aftasapi.services.MemberService;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -20,23 +21,38 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping("/addmember")
-    public ResponseEntity<Map<String, Object>>addMember(@RequestBody Member member) {
+    @PostMapping()
+    public ResponseEntity<Map<String, Object>> addMember(@RequestBody MemberDto member) {
         Map<String, Object> response = new HashMap<>();
 
         try {
 
-
+            Member newMember = memberService.addMember(member.DtoToMember());
             response.put("message", "User created successfully");
-            response.put("member",memberService.addMember(member));
+            response.put("member", newMember);
             return ResponseEntity.ok(response);
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             response.put("status", "error");
             response.put("message", "member already exists");
             return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
 
         }
+    }
+
+    @GetMapping
+    public  ResponseEntity<Map<String,Object>> getMembers(){
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            List<Member> allMembers = memberService.GetAllMembers();
+            response.put("members", allMembers);
+            return ResponseEntity.ok(response);
+        }catch (Exception e){
+            response.put("error",e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+
     }
 
 }

@@ -5,6 +5,9 @@ import com.example.aftasapi.repositories.MemberRepository;
 import com.example.aftasapi.services.MemberService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class MemberServiceImpl implements MemberService {
 
@@ -26,7 +29,12 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
-    public Member getMemberbyID(Long id) {
-        return null;
+    public Optional<Member> getMemberbyID(Long id) {
+        return memberRepository.findById(id);
+    }
+
+    @Override
+    public List<Member> GetAllMembers() {
+        return memberRepository.findAll();
     }
 }
