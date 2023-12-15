@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
 import { initFlowbite } from 'flowbite';
-import { competitions } from 'src/app/models/competition';
+import { Competition } from 'src/app/models/competition';
 import { CompetitionService } from 'src/app/services/competition.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { CompetitionResponse } from 'src/app/models/competition-response';
 @Component({
   selector: 'app-competitions',
   templateUrl: './competitions.component.html',
@@ -12,9 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CompetitionsComponent {
 
-  private dataList : any = [];
+
+  competitions: Competition[] = [];
   AddForm: FormGroup;
   showModal = true; 
+  @ViewChild('closeModalButton', { static: false }) closeModalButton: ElementRef | undefined;
 
   constructor(
     private competitionsService: CompetitionService ,
@@ -40,6 +42,7 @@ export class CompetitionsComponent {
     
   }
 
+ 
 
   OnAddFormSubmite(){
     if(this.AddForm.valid){
@@ -50,9 +53,10 @@ export class CompetitionsComponent {
             closeButton: true,
             timeOut: 3000,
           });
-          this.closeModal();
           this.AddForm.reset();
-        
+          this.triggerCloseButtonClick();
+          this.getAllCompetitions();
+
 
         },
         error: (err: any) => {
@@ -65,19 +69,16 @@ export class CompetitionsComponent {
       })
     }
   }
-  closeModal() {
-    this.showModal = false;
-  }
+  
 
   getAllCompetitions(){
     
-    this.competitionsService.GetAllCompetitions().subscribe(data =>{
-      console.log(data);
-      this.dataList = data;
-
+   
+    this.competitionsService.GetAllCompetitions().subscribe((data: CompetitionResponse) => {
+      this.competitions = data.AllCompetitions;
+      console.log(this.competitions);
       
-    })
-
+    });
    
     
 
@@ -85,4 +86,26 @@ export class CompetitionsComponent {
     
     
   }
+
+  ngAfterViewInit() {
+    // Now you can use this.closeModalButton safely
+  }
+
+  // ... rest of your component code
+
+  closeModal() {
+    // Assuming your modal library uses the 'hidden' class to hide the modal
+    // You may need to adapt this based on your modal library
+    if (this.closeModalButton) {
+      this.closeModalButton.nativeElement.classList.add('hidden');
+    }
+  }
+
+  // Programmatically trigger the click event of the close button
+  triggerCloseButtonClick() {
+    if (this.closeModalButton) {
+      this.closeModalButton.nativeElement.click();
+    }
+  }
+
 }

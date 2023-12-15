@@ -1,11 +1,11 @@
 import { Time } from "@angular/common";
 
-export interface competitions{
+export interface Competition {
     code:string;
-    startTime:Date;
+    startTime:Time;
     endTime:Time;
+    date:Date;
     numberOfParticipants:Number;
     location:String;
     amount:number;
-
 }
