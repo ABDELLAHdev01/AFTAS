@@ -1,5 +1,6 @@
 package com.example.aftasapi.services.impl;
 
+import com.example.aftasapi.dto.CompetitionDto;
 import com.example.aftasapi.entities.Competition;
 import com.example.aftasapi.entities.Member;
 import com.example.aftasapi.entities.Ranking;
@@ -10,7 +11,10 @@ import com.example.aftasapi.services.MemberService;
 import com.example.aftasapi.services.RankingService;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +26,7 @@ public class CompetitionServiceImpl implements CompetitionService {
     public final MemberService memberService;
 
     public final RankingService rankingService;
+
     public CompetitionServiceImpl(CompetitionRepository competitionRepository, MemberService memberService, RankingService rankingService) {
         this.competitionRepository = competitionRepository;
         this.memberService = memberService;
@@ -40,8 +45,24 @@ public class CompetitionServiceImpl implements CompetitionService {
     @Override
     public Ranking AssingMemberToCompetition(Long memberId, String codeComp) {
         Optional<Member> member = memberService.getMemberbyID(memberId);
+        if (member.isEmpty()) {
+            throw new IllegalArgumentException("The member its not correct");
+
+        }
         Optional<Competition> competition = getCompetitionBycode(codeComp);
-      Ranking newRnk =  Ranking.builder()
+        if (competition.isEmpty()) {
+            throw new IllegalArgumentException("Thi competition its not correct");
+
+        }
+
+
+        ValideBeofreAssigne(competition);
+
+        if (comparison(competition.get().getDate(),competition.get().getStartTime())){
+            throw new IllegalArgumentException("Competition its starting in less than 24h");
+        }
+
+        Ranking newRnk = Ranking.builder()
                 .id(
                         RankId.builder()
                                 .competitionCode(codeComp)
@@ -54,7 +75,9 @@ public class CompetitionServiceImpl implements CompetitionService {
                 .member(member.get())
                 .competition(competition.get())
                 .build();
-
+        if (rankingService.findRankingByMember(newRnk.getMember()).isPresent()) {
+            throw new IllegalArgumentException("This member already in this competition");
+        }
         return rankingService.AddMemberToRanking(newRnk);
     }
 
@@ -70,6 +93,7 @@ public class CompetitionServiceImpl implements CompetitionService {
 
     private void generateCompetitionCode(Competition competition) {
         competition.setCode(competition.getDate() + "-" + competition.getLocation());
+
     }
 
     private void checkExistingCompetitions(Competition competition) {
@@ -96,6 +120,21 @@ public class CompetitionServiceImpl implements CompetitionService {
         }
     }
 
+    private void ValideBeofreAssigne(Optional<Competition> competition){
+
+        if (competition.get().getDate().isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("The competition its done");
+
+        }
+    }
+
+
+    public boolean comparison(LocalDate date, LocalTime startTime){
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        LocalDateTime competitionDateTime = LocalDateTime.of(date, startTime);
+        Duration duration = Duration.between(currentDateTime, competitionDateTime);
+        return Math.abs(duration.getSeconds()) < 86400;
+    }
 
 
 }

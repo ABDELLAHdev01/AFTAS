@@ -13,4 +13,6 @@ public interface CompetitionService {
 
     public Optional<Competition> getCompetitionBycode(String code);
     public Ranking AssingMemberToCompetition(Long memberId, String codeComp);
+
+
 }

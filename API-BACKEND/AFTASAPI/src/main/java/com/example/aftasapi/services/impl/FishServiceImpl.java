@@ -5,6 +5,7 @@ import com.example.aftasapi.repositories.FishRepository;
 import com.example.aftasapi.services.FishService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,5 +26,10 @@ public class FishServiceImpl implements FishService {
     @Override
     public Fish AddFish(Fish fish) {
         return fishRepository.save(fish);
+    }
+
+    @Override
+    public List<Fish> GetAllFish() {
+        return fishRepository.findAll();
     }
 }

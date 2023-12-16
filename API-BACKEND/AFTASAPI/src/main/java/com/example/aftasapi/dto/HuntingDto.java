@@ -13,6 +13,7 @@ public class HuntingDto {
     private String code;
     private Long fishId;
     private Long number;
+    private Double weight;
 
     private Integer rank;
     private Integer score;

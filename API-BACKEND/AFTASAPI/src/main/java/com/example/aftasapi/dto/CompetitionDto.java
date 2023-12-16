@@ -25,6 +25,7 @@ public class CompetitionDto {
     private Double amount;
 
 
+
     public Competition mapToEntity(){
         return Competition.builder()
                 .code(code)
