@@ -3,6 +3,10 @@ import { initFlowbite } from 'flowbite';
 import { MemberService } from 'src/app/services/member.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Member } from 'src/app/models/member';
+import {  ViewChild, ElementRef } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
+
 
 
 @Component({
@@ -11,8 +15,20 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./members.component.css']
 })
 export class MembersComponent {
-  AddForm: FormGroup;
+  @ViewChild('closebtn', { static: false }) closebtn: ElementRef | undefined;
+  countries: any = environment.countryList;
 
+    // Pagination variables
+
+    POSTS:any;
+    page:number = 1;
+    count:number = 0;
+    tableSize:number = 10;
+    tableSizes: any = [5,10,20,30];
+    total:any = 0;
+    
+  AddForm: FormGroup;
+  members: Member[] = [];
 
   ngOnInit(): void {
     initFlowbite();
@@ -20,6 +36,12 @@ export class MembersComponent {
 
   }
 
+  onTableChange(event:any){
+    this.tableSize = event.target.value;
+    this.page = event;
+    initFlowbite();
+
+  }
 
   constructor(
     private membersService: MemberService,
@@ -31,17 +53,27 @@ export class MembersComponent {
         firstName: '',
         lastName: '',
         accessionDate: '',
-        identityDocument: '',
+        identityDocumentType: '',
         identityNumber: '',
         nationality: '',
     })
   }
 
 
+  
+ closethebtn(){
+  if (this.closebtn) {
+    this.closebtn.nativeElement.click();
+    initFlowbite();
+
+  }
+ }
+
   getMembers(){
     this.membersService.getMembers().subscribe(mem => {
-      console.log(mem);
-      
+      this.members = mem.members
+      initFlowbite();
+
     })
   }
 
@@ -56,6 +88,8 @@ export class MembersComponent {
             timeOut: 3000,
           });
           this.AddForm.reset();
+          this.closethebtn()
+          this.getMembers();
 
         },
         error: (err: any) => {

@@ -16,8 +16,16 @@ export class CompetitionService {
   }
 
   GetAllCompetitions (): Observable<any>{
-    return this.http.get(this.BASE_URL+'/competition/all');
+    return this.http.get(this.BASE_URL+'/competition');
     
+  }
+
+  GetAllCompetitionsField(field : string): Observable<any>{
+    return this.http.get(this.BASE_URL+'/competition/'+field);
+  }
+
+  GetAllCompetitionsPagination(offset: number,pgeSize: number): Observable<any>{
+    return this.http.get(this.BASE_URL+'/competition/'+offset+'/'+pgeSize);
   }
 
 

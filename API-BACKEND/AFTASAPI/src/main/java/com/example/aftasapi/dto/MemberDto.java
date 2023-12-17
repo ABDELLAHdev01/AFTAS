@@ -19,7 +19,6 @@ public class MemberDto {
     private String lastName;
     private LocalDate accessionDate;
     private String nationality;
-    @Enumerated(EnumType.STRING)
     private IdentityDocumentType identityDocument;
     private String identityNumber;
 

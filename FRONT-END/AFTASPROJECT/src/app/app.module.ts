@@ -19,6 +19,9 @@ import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule } from  '@ngx-translate/core';
 import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
+import { PaginationComponentComponent } from './components/pagination-component/pagination-component.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { initFlowbite } from 'flowbite';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
     LandingPageComponent,
     CompetitionsComponent,
     MembersComponent,
-    FishesComponent
+    FishesComponent,
+
+    PaginationComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,11 +45,13 @@ import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
     HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+   
+    NgxPaginationModule
     
    
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

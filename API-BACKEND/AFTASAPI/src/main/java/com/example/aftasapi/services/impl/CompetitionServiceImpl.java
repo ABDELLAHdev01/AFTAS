@@ -1,6 +1,5 @@
 package com.example.aftasapi.services.impl;
 
-import com.example.aftasapi.dto.CompetitionDto;
 import com.example.aftasapi.entities.Competition;
 import com.example.aftasapi.entities.Member;
 import com.example.aftasapi.entities.Ranking;
@@ -9,6 +8,9 @@ import com.example.aftasapi.repositories.CompetitionRepository;
 import com.example.aftasapi.services.CompetitionService;
 import com.example.aftasapi.services.MemberService;
 import com.example.aftasapi.services.RankingService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -35,6 +37,15 @@ public class CompetitionServiceImpl implements CompetitionService {
 
     public List<Competition> getCompetitionList() {
         return competitionRepository.findAll();
+    }
+
+    public List<Competition> getCompetitionListByField(String field) {
+        return competitionRepository.findAll(Sort.by(Sort.Direction.DESC,field));
+    }
+
+    @Override
+    public Page<Competition> getCompetitionListWithPagination(int offset, int pageSize) {
+        return competitionRepository.findAll(PageRequest.of(offset, pageSize));
     }
 
     @Override
@@ -92,7 +103,15 @@ public class CompetitionServiceImpl implements CompetitionService {
     }
 
     private void generateCompetitionCode(Competition competition) {
-        competition.setCode(competition.getDate() + "-" + competition.getLocation());
+        String date = competition.getDate().toString() ; // Remove hyphens from the date
+        String location = competition.getLocation().replaceAll("-", "").replaceAll(" ",""); // Remove hyphens from the location
+
+
+        String code = date +
+                location.substring(0, Math.min(location.length(), 3));
+
+
+        competition.setCode(code);
 
     }
 

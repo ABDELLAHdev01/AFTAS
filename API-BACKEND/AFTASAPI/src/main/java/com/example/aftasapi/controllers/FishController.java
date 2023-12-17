@@ -41,7 +41,7 @@ public class FishController {
         Map<String, Object> response = new HashMap<>();
 
         try {
-            fishService.AddFish(fish.DtoToEntity());
+            fishService.AddFish(fish);
             response.put("fish", fish);
             return ResponseEntity.ok(response);
         } catch (Exception e) {

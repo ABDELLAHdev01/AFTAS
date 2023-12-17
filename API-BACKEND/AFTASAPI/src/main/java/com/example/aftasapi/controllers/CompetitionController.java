@@ -4,6 +4,7 @@ import com.example.aftasapi.dto.CompetitionDto;
 import com.example.aftasapi.dto.RankingDto;
 import com.example.aftasapi.entities.Competition;
 import com.example.aftasapi.services.CompetitionService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,13 +37,44 @@ public class CompetitionController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public ResponseEntity<Map<String, Object>> getAllComp() {
         Map<String, Object> response = new HashMap<>();
         try {
 
 
             List<Competition> allcomp = competitionService.getCompetitionList();
+            response.put("AllCompetitions", allcomp);
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("err", e);
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+    @GetMapping("/{field}")
+    public ResponseEntity<Map<String, Object>> getAllCompwithfield( @PathVariable String field) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+
+
+            List<Competition> allcomp = competitionService.getCompetitionListByField(field);
+            response.put("AllCompetitions", allcomp);
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("err", e);
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @GetMapping("/{offset}/{pageSize}")
+    public ResponseEntity<Map<String, Object>> getAllCompwithPagination( @PathVariable int offset, @PathVariable int pageSize) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+
+
+            Page<Competition> allcomp = competitionService.getCompetitionListWithPagination(offset, pageSize);
             response.put("AllCompetitions", allcomp);
 
             return ResponseEntity.ok(response);
