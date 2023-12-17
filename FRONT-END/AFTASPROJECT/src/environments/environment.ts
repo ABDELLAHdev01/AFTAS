@@ -1,4 +1,6 @@
 export const environment = {
 
-    base_url: 'http://localhost:8989/'
+    base_url: 'http://localhost:8989/',
+
+   
 };
