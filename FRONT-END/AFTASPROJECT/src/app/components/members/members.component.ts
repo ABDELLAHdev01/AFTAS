@@ -23,7 +23,7 @@ export class MembersComponent {
     POSTS:any;
     page:number = 1;
     count:number = 0;
-    tableSize:number = 10;
+    tableSize:number = 5;
     tableSizes: any = [5,10,20,30];
     total:any = 0;
     

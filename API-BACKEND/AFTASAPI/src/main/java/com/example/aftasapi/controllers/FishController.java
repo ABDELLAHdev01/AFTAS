@@ -3,6 +3,7 @@ package com.example.aftasapi.controllers;
 import com.example.aftasapi.dto.fishDto;
 import com.example.aftasapi.entities.Fish;
 import com.example.aftasapi.services.FishService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class FishController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, Object>> add(@RequestBody fishDto fish) {
+    public ResponseEntity<Map<String, Object>> add(@Valid @RequestBody fishDto fish) {
         Map<String, Object> response = new HashMap<>();
 
         try {

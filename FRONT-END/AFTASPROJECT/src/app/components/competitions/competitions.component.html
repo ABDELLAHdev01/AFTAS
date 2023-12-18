@@ -29,15 +29,21 @@
                             <svg class="-ml-1 mr-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                             </svg>
-                            Actions
+                            Filter
                         </button>
-                        <div id="actionsDropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                           
+                        <div id="actionsDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="actionsDropdownButton">
+                              <li>
+                                <a (click)="changeCompetitionsToFilterStatus(1)" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Still</a>
+                              </li>
+                            </ul>
                             <div class="py-1">
-                                <a  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"></a>
+                              <a (click)="changeCompetitionsToFilterStatus(2)" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Going</a>
                             </div>
-                        </div>
-                       
+                            <div class="py-1">
+                                <a (click)="changeCompetitionsToFilterStatus(3)" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Done</a>
+                              </div>
+                          </div>
                     </div>
                 </div>
             </div>
@@ -51,10 +57,16 @@
                             <th (click)="getAllCompetitionswtithField('location')" scope="col" class="px-4 py-3"><div class="flex">Location <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
                               </svg></div></th>
-                            <th (click)="getAllCompetitionswtithField('startTime')" scope="col" class="px-4 py-3">Start Time</th>
-                            <th (click)="getAllCompetitionswtithField('endTime')" scope="col" class="px-4 py-3">End Time</th>
-                            <th (click)="getAllCompetitionswtithField('date')" scope="col" class="px-4 py-3">Date</th>
-                            <th  scope="col" class="px-4 py-3">Assing</th>
+                            <th (click)="getAllCompetitionswtithField('startTime')" scope="col" class="px-4 py-3"><div class="flex"> Start Time <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                              </svg></div> </th>
+                            <th (click)="getAllCompetitionswtithField('endTime')" scope="col" class="px-4 py-3"><div class="flex"> End Time <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                              </svg></div> </th>
+                            <th (click)="getAllCompetitionswtithField('date')" scope="col" class="px-4 py-3"><div class="flex"> Date <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+                              </svg></div> </th>
+                            <th  scope="col" class="px-4 py-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,7 +82,8 @@
                             <td class="px-4 py-3">{{competition.date}}</td>
                             <td class="px-4 py-3 flex ">   
                              <button (click)="openAssignmentModal(competition.code)" data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="  flex items-center justify-center  text-white bg-green-900   hover:bg-green-950 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 me-3">ASSIGN MEMBER</button>
-                             <button (click)="openHuntModal(competition.code)" id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal"  class="  flex items-center justify-center  text-white bg-yellow-500 hover:bg-green-950 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Add Hunt</button>
+                             <button (click)="openHuntModal(competition.code)" id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal"  class="  flex items-center justify-center  text-white bg-yellow-500 hover:bg-green-950 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 me-3">Add Hunt</button>
+                             <button *ngIf="isCompetitionDateBeforeToday(competition.date)" (click)="openRankModal(competition.code)" data-modal-target="static-modal" data-modal-toggle="static-modal" class="  flex items-center justify-center  text-white bg-blue-800 hover:bg-green-950 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">TOP 3</button>
 
                             </td>
                           
@@ -81,13 +94,16 @@
            <!-- here pagination -->
           
 
-           <pagination-controls 
+           <div class="mt-3">
+            <pagination-controls 
+           
            id="foo" 
            (pageChange)="page = $event" 
            screenReaderCurrentLabel="You're on page"
            screenReaderPageLabel="page"
 
            ></pagination-controls>
+           </div>
 
         </div>
     </div>
@@ -221,6 +237,30 @@
                     Add new hunt
                 </button>
             </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Main modal -->
+<div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+          
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4" style="background-image: url('https://i.pinimg.com/736x/45/71/d0/4571d0a30822c60c27a7f0fc7ea9757a.jpg'); 
+            
+            background-size: 100% 100%;    ">
+            <div class="flex mb-40">
+                <h3 *ngFor="let member of filteredMembers" class="text-red-800 font-bold me-16 text-4xl py-48">{{member.firstName}} {{member.lastName}}</h3>
+                
+
+            </div>
+            </div>
+            <!-- Modal footer -->
+           
         </div>
     </div>
 </div>

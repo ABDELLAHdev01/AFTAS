@@ -3,6 +3,7 @@ package com.example.aftasapi.controllers;
 import com.example.aftasapi.dto.MemberDto;
 import com.example.aftasapi.entities.Member;
 import com.example.aftasapi.services.MemberService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class MemberController {
     }
 
     @PostMapping()
-    public ResponseEntity<Map<String, Object>> addMember(@RequestBody MemberDto member) {
+    public ResponseEntity<Map<String, Object>> addMember(@Valid @RequestBody MemberDto member) {
         Map<String, Object> response = new HashMap<>();
 
         try {

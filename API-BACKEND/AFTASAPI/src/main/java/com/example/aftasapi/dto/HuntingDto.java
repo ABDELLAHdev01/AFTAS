@@ -1,6 +1,10 @@
 package com.example.aftasapi.dto;
 
 import lombok.*;
+import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 
 @Builder
 @Data
@@ -10,9 +14,12 @@ import lombok.*;
 @NoArgsConstructor
 public class HuntingDto {
 
+    @NotBlank(message = "Competition code is required")
     private String code;
     private Long fishId;
+    @NotNull(message = "Numbers is required")
     private Long number;
+    @NotNull(message = "Weight is required")
     private Double weight;
 
     private Integer rank;

@@ -17,8 +17,10 @@ public interface RankingService {
 
     List<Ranking> getAllRanksByCompetition(String code);
 
-    List<Ranking> getAllRanks();
+    List<Ranking> ShowfinalRankings(String code);
 
     void calculateRank( Member member , Fish fish);
+
+
 
 }

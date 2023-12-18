@@ -3,6 +3,8 @@ import { environment } from 'src/environments/environment.development';
 import {HttpClient} from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { CompetitionResponse } from '../models/competition-response';
+import { MemberResponse } from '../models/member-response';
+import { Competition } from '../models/competition';
 
 
 @Injectable({

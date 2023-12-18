@@ -5,6 +5,8 @@ import com.example.aftasapi.entities.Member;
 import com.example.aftasapi.entities.Ranking;
 import com.example.aftasapi.entities.embadded.RankId;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -14,6 +16,8 @@ public interface RankingRepository extends JpaRepository<Ranking, RankId> {
 
     Optional<Ranking> findByMember(Member member);
 
-    List<Ranking> findAllByCompetitionCode(String competition_code);
+    @Query("SELECT r FROM Ranking r WHERE r.competition.code = ?1 ORDER BY r.score DESC")
+    List<Ranking> findByCompetitionCode(String competitionCode);
 
+    List<Ranking> findRankingsByCompetitionOrderByScore(Competition competition);
 }

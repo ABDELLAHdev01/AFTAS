@@ -13,7 +13,7 @@ import { CompetitionsComponent } from './components/competitions/competitions.co
 import { MembersComponent } from './components/members/members.component';
 import { FishesComponent } from './components/fishes/fishes.component';
 import { CompetitionService } from './services/competition.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';

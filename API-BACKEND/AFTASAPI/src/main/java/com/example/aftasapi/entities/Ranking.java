@@ -19,6 +19,7 @@ public class Ranking implements Serializable {
     @EmbeddedId
     private RankId id;
     private Integer rank;
+    @Column(name = "score")
     private Integer score;
     @ManyToOne
     @MapsId("memberNumber")

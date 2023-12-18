@@ -98,12 +98,13 @@ public class CompetitionServiceImpl implements CompetitionService {
         checkExistingCompetitions(competition);
         generateCompetitionCode(competition);
 
+        competition.setNumberOfParticipants(0);
 
         return competitionRepository.save(competition);
     }
 
     private void generateCompetitionCode(Competition competition) {
-        String date = competition.getDate().toString() ; // Remove hyphens from the date
+        String date = competition.getDate().toString(); // Remove hyphens from the date
         String location = competition.getLocation().replaceAll("-", "").replaceAll(" ",""); // Remove hyphens from the location
 
 

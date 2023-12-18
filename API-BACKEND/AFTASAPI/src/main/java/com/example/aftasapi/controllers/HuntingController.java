@@ -3,6 +3,7 @@ package com.example.aftasapi.controllers;
 import com.example.aftasapi.dto.HuntingDto;
 import com.example.aftasapi.entities.Hunting;
 import com.example.aftasapi.services.HuntingService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class HuntingController {
 
 
     @PostMapping("add")
-    public ResponseEntity<Map<String, Object>> addHunt(@RequestBody HuntingDto hunting) {
+    public ResponseEntity<Map<String, Object>> addHunt(@Valid @RequestBody HuntingDto hunting) {
         Map<String, Object> response = new HashMap<>();
 
         try {

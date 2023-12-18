@@ -4,6 +4,7 @@ import com.example.aftasapi.dto.CompetitionDto;
 import com.example.aftasapi.dto.RankingDto;
 import com.example.aftasapi.entities.Competition;
 import com.example.aftasapi.services.CompetitionService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class CompetitionController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createCompetition(@RequestBody CompetitionDto competition) {
+    public ResponseEntity<Map<String, Object>> createCompetition(@Valid @RequestBody CompetitionDto competition) {
         Map<String, Object> response = new HashMap<>();
         try {
 
@@ -53,7 +54,7 @@ public class CompetitionController {
         }
     }
     @GetMapping("/{field}")
-    public ResponseEntity<Map<String, Object>> getAllCompwithfield( @PathVariable String field) {
+    public ResponseEntity<Map<String, Object>> getAllCompwithfield(@Valid @PathVariable String field) {
         Map<String, Object> response = new HashMap<>();
         try {
 
@@ -69,7 +70,7 @@ public class CompetitionController {
     }
 
     @GetMapping("/{offset}/{pageSize}")
-    public ResponseEntity<Map<String, Object>> getAllCompwithPagination( @PathVariable int offset, @PathVariable int pageSize) {
+    public ResponseEntity<Map<String, Object>> getAllCompwithPagination(@Valid @PathVariable int offset, @PathVariable int pageSize) {
         Map<String, Object> response = new HashMap<>();
         try {
 
@@ -85,7 +86,7 @@ public class CompetitionController {
     }
 
     @PostMapping("/assing")
-    public ResponseEntity<Map<String,Object>> AddRanking(@RequestBody RankingDto newRanking){
+    public ResponseEntity<Map<String,Object>> AddRanking(@Valid @RequestBody RankingDto newRanking){
         Map<String, Object> response = new HashMap<>();
 
 

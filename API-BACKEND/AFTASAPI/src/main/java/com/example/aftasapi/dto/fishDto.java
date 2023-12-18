@@ -2,6 +2,7 @@ package com.example.aftasapi.dto;
 
 import com.example.aftasapi.entities.Fish;
 import com.example.aftasapi.entities.Level;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Builder
@@ -13,7 +14,9 @@ import lombok.*;
 public class fishDto {
 
     private Long id;
+    @NotNull(message = "name is required")
     private String name;
+    @NotNull(message = "averageWeight is required")
     private Double averageWeight;
     private Integer level_id;
 
