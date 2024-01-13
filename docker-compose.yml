@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest # or use the version of your choice
+    environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        MYSQL_DATABASE: aftas
+        MYSQL_USER: ghoulam # your desired username
+        MYSQL_PASSWORD: tito  # your desired password
+    ports:
+        - "3306:3306"
+    
+
+  spring-app:
+    build:
+      context: ./API-BACKEND/AFTASAPI
+      dockerfile: Dockerfile
+    ports:
+      - "8989:8989"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/aftas?createDatabaseIfNotExist=true&useSSL=true&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: user # as defined above
+      SPRING_DATASOURCE_PASSWORD: 
+
+  spring-app-angular:
+    build:
+      context: ./FRONT-END/AFTASPROJECT
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - spring-app
+
+
