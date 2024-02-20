@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface MemberRepository  extends JpaRepository<Member,Long> {
     @Query(value = "SELECT * FROM member u WHERE u.email = :email", nativeQuery = true)
     Optional<Member> findByEmailNativeQuery( String email);
+
+    Optional<Member> findByEmail(String email);
 }
